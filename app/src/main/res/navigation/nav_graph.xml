@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_graph">
+    <composable
+        android:id="@+id/DetailGameScreen"
+        android:name="com.itc.kotlinknightsproject.ui.detailsscreens.DetailsScreen"
+        android:label="Details Screen"
+        />
+
+</navigation>

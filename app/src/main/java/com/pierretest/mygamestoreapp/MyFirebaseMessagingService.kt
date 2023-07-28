@@ -7,11 +7,18 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.pierretest.mygamestoreapp.ui.MainActivity
 
 class MyFirebaseMessagingService: FirebaseMessagingService() {
+
+    override fun onNewToken(token: String) {
+        Log.d("Refresh Token", "New Token Added")
+    }
+
     override fun onMessageReceived(message: RemoteMessage) {
         message.notification?.let {
             sendPushNotification(it.body!!,it.title!!)
@@ -19,8 +26,6 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
         }
     }
 
-    override fun onNewToken(token: String) {
-    }
 
     private fun sendPushNotification(notification: String, notificationTitle: String, ) {
         val intent = Intent(this, MainActivity::class.java)
