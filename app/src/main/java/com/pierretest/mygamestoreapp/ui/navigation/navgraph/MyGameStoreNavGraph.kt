@@ -41,20 +41,22 @@ fun MyGameStoreNavGraph(
         AppDrawer(
             route = currentRoute,
             navigateToHome = { navigationActions.navigateToGames() },
-            navigateToCategories = {navigationActions.navigateToCategories()},
+            navigateToCategories = { navigationActions.navigateToCategories() },
             closeDrawer = { coroutineScope.launch { drawerState.close() } },
-            modifier= Modifier)
+            modifier = Modifier
+        )
     }, drawerState = drawerState) {
         Scaffold(
             topBar = {
-                TopAppBar(title = {
-                    val titleText = if (currentRoute == "DetailGameScreen/{gameId}") {
-                        "Details"
-                    } else {
-                        currentRoute
-                    }
-                    Text(text = titleText)
-                },
+                TopAppBar(
+                    title = {
+                        val titleText = if (currentRoute == "DetailGameScreen/{gameId}") {
+                            "Details"
+                        } else {
+                            currentRoute
+                        }
+                        Text(text = titleText)
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     navigationIcon = {
                         IconButton(onClick = {
@@ -77,7 +79,8 @@ fun MyGameStoreNavGraph(
 
                 composable("DetailGameScreen/{gameId}") { backStackEntry ->
                     val gameId = backStackEntry.arguments?.getString("gameId")
-                    val game = gameViewModel.listAllGames.value.firstOrNull { it.id.toString() == gameId }
+                    val game =
+                        gameViewModel.listAllGames.value.firstOrNull { it.id.toString() == gameId }
                     if (game != null) {
                         DetailGameScreen(game)
                     }
